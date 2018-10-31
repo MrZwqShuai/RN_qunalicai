@@ -1,0 +1,23 @@
+{
+  "presets": ["react-native"],
+  "plugins": [
+    "transform-decorators-legacy",
+    [
+      "module-resolver",
+      {
+        "cwd": "babelrc",
+        "root": ["./"],
+        "alias": {
+          "~style": "./src/Asset/style.ts",
+          "~apis": "./src/Api/index.ts",
+          "~store": "./src/Store/index.ts",
+          "~components": "./src/Components",
+          "~fetch": "./src/Config/fetch",
+          "~utils": "./src/Config/utils",
+          "~navigation": "./src/Navigation",
+          "~pages": "./src/Page"
+        }
+      }
+    ]
+  ]
+}

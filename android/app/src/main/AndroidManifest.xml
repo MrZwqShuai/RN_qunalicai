@@ -1,0 +1,116 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.a8jielicai.whereto">
+
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+  <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
+  <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+  tools:ignore="ProtectedPermissions" />
+  <!-- 友盟所需权限 以下权限缺一不可 -->
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <!--react-native-image-crop-picker-->
+  <uses-permission android:name="android.permission.CAMERA" />
+  <!-- 支付宝权限声明 -->
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <application
+    xmlns:tools="http://schemas.android.com/tools"
+    android:name=".MainApplication"
+    android:allowBackup="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:theme="@style/AppTheme">
+    <!--支付宝声明-->
+    <activity
+      android:name="com.alipay.sdk.app.H5PayActivity"
+      android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+      android:exported="false"
+      android:screenOrientation="behind"
+      android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+    <activity
+      android:name="com.alipay.sdk.app.H5AuthActivity"
+      android:configChanges="orientation|keyboardHidden|navigation"
+      android:exported="false"
+      android:screenOrientation="behind"
+      android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+    <activity
+      android:name=".MainActivity"
+      android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+      android:label="@string/app_name"
+      android:launchMode="singleTask"
+      android:windowSoftInputMode="adjustPan">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+
+        <data
+          android:host="react-native.wsloan"
+          android:pathPrefix="/data"
+          android:scheme="qnlc" />
+      </intent-filter>
+    </activity>
+
+    <meta-data
+      android:name="JPUSH_APPKEY"
+      android:value="${JPUSH_APPKEY}" />
+    <meta-data
+      android:name="JPUSH_CHANNEL"
+      android:value="${APP_CHANNEL}" />
+
+    <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+    <!--<activity-->
+    <!--android:name=".wxapi.WXEntryActivity"-->
+    <!--android:label="@string/app_name"-->
+    <!--android:exported="true"-->
+    <!--/>-->
+    <activity
+      android:name=".wxapi.WXEntryActivity"
+      android:configChanges="keyboardHidden|orientation|screenSize"
+      android:exported="true"
+      android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <activity
+      android:name=".wxapi.WXPayEntryActivity"
+      android:configChanges="keyboardHidden|orientation|screenSize"
+      android:exported="true"
+      android:launchMode="singleTop"
+      android:screenOrientation="portrait"
+      android:theme="@android:style/Theme.Light.NoTitleBar" />
+    <activity
+      android:name=".X5WebViewActivity"
+      android:configChanges="keyboardHidden|orientation|screenSize" />
+
+    <receiver android:name=".utils.DownloadReceiver">
+      <intent-filter>
+        <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+        <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED" />
+      </intent-filter>
+    </receiver>
+
+    <receiver android:name=".utils.DownloadReceiver">
+      <intent-filter>
+        <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+        <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED" />
+      </intent-filter>
+    </receiver>
+    <!--向应用外提供数据-->
+    <provider
+      tools:replace="android:authorities"
+
+      android:name="android.support.v4.content.FileProvider"
+      android:authorities="com.a8jielicai.whereto.provider"
+      android:exported="false"
+      android:grantUriPermissions="true">
+      <meta-data
+        tools:replace="android:resource"
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths" />
+    </provider>
+  </application>
+</manifest>

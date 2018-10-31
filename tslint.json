@@ -1,0 +1,14 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:latest", "tslint-react"],
+  "jsRules": {},
+  "rules": {
+    // 我更喜欢没有分号 :)
+    "semicolon": [true, "never"],
+    // 这个规则使每个接口以 I 开头，这点我不喜欢
+    "interface-name": [true, "never-prefix"],
+    // 这个规则强制对象中的 key 按照字母顺序排列
+    "object-literal-sort-keys": false
+  },
+  "rulesDirectory": []
+}
